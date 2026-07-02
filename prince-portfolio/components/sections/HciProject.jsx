@@ -5,6 +5,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Download, ExternalLink, Map, ScrollText } from "lucide-react";
 import { hciProject } from "@/data/hciProject";
+import { withBasePath } from "@/lib/basePath";
 import { scrollFadeUp, viewportOnce } from "@/lib/motion";
 import Button from "@/components/ui/Button";
 
@@ -43,7 +44,7 @@ function PhoneFrame({ screen }) {
         <div className="absolute top-3 left-1/2 z-10 h-1.5 w-16 -translate-x-1/2 rounded-full bg-surface-raised" />
         {screen.src ? (
           <Image
-            src={screen.src}
+            src={withBasePath(screen.src)}
             alt={screen.alt}
             fill
             sizes="288px"
@@ -80,7 +81,7 @@ function ScreenshotGrid({ screenshots }) {
         >
           <div className="relative aspect-[4/3] w-full bg-background">
             <Image
-              src={screenshot.src}
+              src={withBasePath(screenshot.src)}
               alt={screenshot.alt}
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -276,7 +277,7 @@ export default function HciProject() {
                 >
                   <div className="relative aspect-[4/3] w-full">
                     <Image
-                      src={award.src}
+                      src={withBasePath(award.src)}
                       alt={award.alt}
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"

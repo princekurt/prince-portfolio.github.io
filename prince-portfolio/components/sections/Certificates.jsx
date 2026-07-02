@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { certificates } from "@/data/certificates";
+import { withBasePath } from "@/lib/basePath";
 import { scrollFadeUp, viewportOnce } from "@/lib/motion";
 
 /* eslint-disable @next/next/no-img-element */
@@ -18,7 +19,7 @@ function CertificatePreview({ certificate }) {
     return (
       <iframe
         title={`${certificate.title} preview`}
-        src={`${certificate.file}#toolbar=0&navpanes=0&scrollbar=0&page=1&view=FitH`}
+        src={`${withBasePath(certificate.file)}#toolbar=0&navpanes=0&scrollbar=0&page=1&view=FitH`}
         tabIndex={-1}
         aria-hidden="true"
         className="h-full w-full pointer-events-none border-0 bg-background"
@@ -28,7 +29,7 @@ function CertificatePreview({ certificate }) {
 
   return (
     <Image
-      src={certificate.image}
+      src={withBasePath(certificate.image)}
       alt={`${certificate.title} certificate thumbnail`}
       fill
       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -133,12 +134,12 @@ function CertificateModal({ certificate, triggerRef, onClose }) {
               {isPdf(certificate.file) ? (
                 <iframe
                   title={`${certificate.title} certificate`}
-                  src={certificate.file}
+                  src={withBasePath(certificate.file)}
                   className="h-[75vh] w-full rounded-lg border border-border bg-surface"
                 />
               ) : (
                 <img
-                  src={certificate.file}
+                  src={withBasePath(certificate.file)}
                   alt={`${certificate.title} certificate from ${certificate.issuer}`}
                   className="mx-auto h-auto max-w-none rounded-lg"
                 />

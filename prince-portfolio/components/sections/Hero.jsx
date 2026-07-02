@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import { withBasePath } from "@/lib/basePath";
 import { site } from "@/lib/content";
 import Button from "@/components/ui/Button";
 
@@ -88,7 +89,7 @@ export default function Hero() {
         >
           <div className="relative size-56 overflow-hidden rounded-lg border border-border sm:size-64 lg:size-72">
             <Image
-              src="/profile_pic.jpg"
+              src={withBasePath("/profile_pic.jpg")}
               alt={`Portrait of ${site.name}`}
               fill
               priority
